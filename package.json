@@ -1,0 +1,21 @@
+{
+  "name": "progressappbackend",
+  "version": "1.0.0",
+  "description": "backend for project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nigouu/ProgressAppBackend.git"
+  },
+  "author": "snigsnog&Libeman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nigouu/ProgressAppBackend/issues"
+  },
+  "homepage": "https://github.com/Nigouu/ProgressAppBackend#readme"
+}
