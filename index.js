@@ -2,6 +2,10 @@ const http = require('http')
 const express = require('express')
 const app = express()
 
+const cors = require('cors')
+
+app.use(cors())
+
 const cards = [
     {
       id: 1,
