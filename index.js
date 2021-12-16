@@ -1,11 +1,20 @@
-const http = require('http')
+
+
+//yoyo
+require('dotenv').config()
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-
+const Card = require('./models/card')
 const cors = require('cors')
+const morgan = require('morgan')
+  morgan.token('body', (req, res) => JSON.stringify(req.body));
 
+app.use(express.static('build'))
+app.use(express.json())
 app.use(cors())
-
+app.use(morgan(':method :url :status :response-time ms :body - '))
+/*
 const cards = [
     {
       id: 1,
@@ -26,13 +35,17 @@ const cards = [
       date: '2019-05-30T19:20:14.298Z',
     }
   ]
+*/
+
 
   app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
   })
   
   app.get('/api/cards', (request, response) => {
-    response.json(cards)
+    Card.find({}).then(cards => {
+      response.json(cards)
+    })
   })
 
   app.get('/api/cards/:id', (request, response) => {
@@ -45,7 +58,7 @@ const cards = [
     response.json(card)
   })
   
-  const PORT = 3001
+  const PORT = process.env.PORT
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })
