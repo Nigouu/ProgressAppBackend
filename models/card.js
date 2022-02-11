@@ -26,4 +26,6 @@ cardSchema.set('toJSON', {
   }
 })
 
+const Card = mongoose.model('Card', cardSchema)
+
 module.exports = mongoose.model('Card', cardSchema)

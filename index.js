@@ -8,6 +8,7 @@ const app = express()
 const Card = require('./models/card')
 const cors = require('cors')
 const morgan = require('morgan')
+const card = require('./models/card')
   morgan.token('body', (req, res) => JSON.stringify(req.body));
 
 app.use(express.static('build'))
@@ -56,6 +57,35 @@ const cards = [
       })
     console.log(card)
     response.json(card)
+  })
+
+  //Add card with post
+  app.post('/api/cards', (request, response) => {
+    const body = request.body
+  
+    if (body.name === undefined) {
+      return response.status(400).json({ error: 'content missing' })
+    }
+  
+    const card = new Card({
+      name: body.name,
+      count: body.number,
+      date: body.date
+    })
+  
+    card.save().then(savedCard => {
+      response.json(savedCard)
+    })
+  })
+
+  //Delete card
+  app.delete('/api/cards/:id', async (request, response, next) => {
+    try {
+      await Card.findByIdAndRemove(request.params.id)
+      response.status(204).end()
+    } catch (exception) {
+      next(exception)
+    }
   })
   
   const PORT = process.env.PORT
