@@ -1,44 +1,23 @@
 
+const app = require('./app') // the actual Express application
+const http = require('http')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 
-//yoyo
-require('dotenv').config()
-const mongoose = require('mongoose')
-const express = require('express')
-const app = express()
-const Card = require('./models/card')
-const cors = require('cors')
-const morgan = require('morgan')
-const card = require('./models/card')
-  morgan.token('body', (req, res) => JSON.stringify(req.body));
-
-app.use(express.static('build'))
-app.use(express.json())
-app.use(cors())
-app.use(morgan(':method :url :status :response-time ms :body - '))
-/*
-const cards = [
-    {
-      id: 1,
-      name: 'No Coffee',
-      count: 0,
-      date: '2019-05-30T17:30:31.098Z',
-    },
-    {
-      id: 2,
-      name: 'No Alcohol',
-      count: 3,
-      date: '2019-05-30T18:39:34.091Z',
-    },
-    {
-      id: 3,
-      name: 'No Fap',
-      count: 2,
-      date: '2019-05-30T19:20:14.298Z',
-    }
-  ]
-*/
+const server = http.createServer(app)
 
 
+
+  
+  const PORT = process.env.PORT
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
+
+
+
+
+  /* Vanha metodi (toimiva)
   app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
   })
@@ -87,8 +66,5 @@ const cards = [
       next(exception)
     }
   })
-  
-  const PORT = process.env.PORT
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-  })
+
+  */

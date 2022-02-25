@@ -15,7 +15,11 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 const cardSchema = new mongoose.Schema({
     name: String,
     count: String,
-    date: String
+    date: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
     })
 
 cardSchema.set('toJSON', {
