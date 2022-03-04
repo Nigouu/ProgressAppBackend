@@ -41,7 +41,8 @@ cardsRouter.get('/', async (request, response) => {
     const card = new Card({
         name: body.name,
         count: body.number,
-        date: body.date
+        date: body.date,
+        owner: body.owner
     })
 
     try {
