@@ -42,7 +42,8 @@ cardsRouter.get('/', async (request, response) => {
         name: body.name,
         count: body.number,
         date: body.date,
-        owner: body.owner
+        owner: body.owner,
+        notes: body.notes,
     })
 
     try {
@@ -60,6 +61,25 @@ cardsRouter.get('/', async (request, response) => {
     try {
       await Card.findByIdAndRemove(request.params.id)
       response.status(204).end()
+    } catch (exception) {
+      next(exception)
+    }
+  })
+
+  cardsRouter.put('/:id', async (request, response, next) => {
+    const body = request.body
+    const card = {
+      name: body.name,
+      count: body.number,
+      date: body.date,
+      owner: body.owner,
+      notes: body.notes,
+    }
+    try {
+      await Card.findByIdAndUpdate(request.params.id, card)
+      .then(updatedCard => {
+        response.json(updatedCard)
+      })
     } catch (exception) {
       next(exception)
     }

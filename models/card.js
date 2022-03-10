@@ -17,6 +17,7 @@ const cardSchema = new mongoose.Schema({
     count: String,
     date: String,
     owner: String,
+    notes: Array,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

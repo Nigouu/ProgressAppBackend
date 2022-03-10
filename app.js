@@ -11,6 +11,7 @@ const card = require('./models/card')
 const cardsRouter = require('./controllers/cards')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const messageRouter = require('./controllers/messages')
 
 app.use(express.static('build'))
 app.use(express.json())
@@ -20,6 +21,7 @@ app.use(morgan(':method :url :status :response-time ms :body - '))
 app.use('/api/cards', cardsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/messages', messageRouter)
 
 
 

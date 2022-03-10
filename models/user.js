@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
       ref: 'Card'
     }
   ],
+  messages: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Message'
+    }
+  ],
 })
 
 userSchema.set('toJSON', {
